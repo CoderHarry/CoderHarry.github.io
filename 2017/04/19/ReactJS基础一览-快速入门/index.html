@@ -1,0 +1,930 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ReactJS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="React基础一览-快速入门[TOC]
+
+由于工作用ReactNative做了一些页面，虽然之前也接触过一些js html5 css的语法，但发现做RN项目的时候对react基础知识不是特别熟悉，所以找了个时间学习了下React和ReactNative的基础，在这篇文章里面也好好总结下自己学到的React相关的知识，后期也会更新RN相关入门的相关知识。
+
+React环境搭建学习任何一门新技术首先是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ReactJS基础一览-快速入门">
+<meta property="og:url" content="http://yoursite.com/2017/04/19/ReactJS基础一览-快速入门/index.html">
+<meta property="og:site_name" content="yanzhi's Blog">
+<meta property="og:description" content="React基础一览-快速入门[TOC]
+
+由于工作用ReactNative做了一些页面，虽然之前也接触过一些js html5 css的语法，但发现做RN项目的时候对react基础知识不是特别熟悉，所以找了个时间学习了下React和ReactNative的基础，在这篇文章里面也好好总结下自己学到的React相关的知识，后期也会更新RN相关入门的相关知识。
+
+React环境搭建学习任何一门新技术首先是">
+<meta property="og:image" content="http://static.codeceo.com/images/2016/03/ajs-life.png">
+<meta property="og:updated_time" content="2017-04-22T06:02:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ReactJS基础一览-快速入门">
+<meta name="twitter:description" content="React基础一览-快速入门[TOC]
+
+由于工作用ReactNative做了一些页面，虽然之前也接触过一些js html5 css的语法，但发现做RN项目的时候对react基础知识不是特别熟悉，所以找了个时间学习了下React和ReactNative的基础，在这篇文章里面也好好总结下自己学到的React相关的知识，后期也会更新RN相关入门的相关知识。
+
+React环境搭建学习任何一门新技术首先是">
+<meta name="twitter:image" content="http://static.codeceo.com/images/2016/03/ajs-life.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/04/19/ReactJS基础一览-快速入门/"/>
+
+
+
+
+
+  <title> ReactJS基础一览-快速入门 | yanzhi's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">yanzhi's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">爱生活，爱编程。记录学习生活中的点点滴滴~</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/19/ReactJS基础一览-快速入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="我就是菜怎么啦">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yanzhi's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ReactJS基础一览-快速入门
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-19T22:58:23+08:00">
+                2017-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/基础知识/" itemprop="url" rel="index">
+                    <span itemprop="name">基础知识</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="React基础一览-快速入门"><a href="#React基础一览-快速入门" class="headerlink" title="React基础一览-快速入门"></a>React基础一览-快速入门</h1><p>[TOC]</p>
+<hr>
+<p>由于工作用ReactNative做了一些页面，虽然之前也接触过一些js html5 css的语法，但发现做RN项目的时候对react基础知识不是特别熟悉，所以找了个时间学习了下React和ReactNative的基础，在这篇文章里面也好好总结下自己学到的React相关的知识，后期也会更新RN相关入门的相关知识。</p>
+<hr>
+<h2 id="React环境搭建"><a href="#React环境搭建" class="headerlink" title="React环境搭建"></a>React环境搭建</h2><p>学习任何一门新技术首先是需要搭建相关的环境，那来看看React的环境搭建需要了解哪些东西。</p>
+<h3 id="1-NodeJS的安装"><a href="#1-NodeJS的安装" class="headerlink" title="1. NodeJS的安装"></a>1. NodeJS的安装</h3><p>这个不多说了，在官网下载直接安装即可，最新的NodeJS包已经集成了npm包管理。安装完成之后用以下命令检查下是否安装成功:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">node -v</div><div class="line">npm -v</div></pre></td></tr></table></figure></p>
+<h3 id="2-使用NPM配置React开发环境"><a href="#2-使用NPM配置React开发环境" class="headerlink" title="2. 使用NPM配置React开发环境"></a>2. 使用NPM配置React开发环境</h3><p>npm项目初始化- 创建项目文件夹，例如Test，然后使用以下命令初始化<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm init</div></pre></td></tr></table></figure></p>
+<p>作用：主要是为了创建package.json文件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">创建相关的文件</div><div class="line">-Test</div><div class="line">  -package.json</div><div class="line">  -index.html</div><div class="line">  -src</div><div class="line">    -js</div><div class="line">      -index.js</div></pre></td></tr></table></figure></p>
+<p>index.html<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;example&quot;&gt;123&lt;/div&gt;</div><div class="line">&lt;script src=&quot;./src/bundle.js&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure></p>
+<p>index.js<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var React = require(&apos;react&apos;)</div><div class="line">var ReactDom = require(&apos;react-dom&apos;)</div><div class="line"></div><div class="line">ReactDom.render(</div><div class="line">	&lt;h1&gt;Hello React&lt;/h1&gt;,</div><div class="line">	document.getElementById(&apos;example&apos;)</div><div class="line">)</div></pre></td></tr></table></figure></p>
+<p>安装一下模块<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">npm install --save react react-dom babelify babel-preset-react</div><div class="line">npm install --save babel-preset-es2015</div><div class="line">npm install --save babel-loader</div></pre></td></tr></table></figure></p>
+<h3 id="3-webpack配置"><a href="#3-webpack配置" class="headerlink" title="3. webpack配置"></a>3. webpack配置</h3><p>全局安装webpack<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm install -g webpack</div><div class="line">npm install -g webpack-server</div></pre></td></tr></table></figure></p>
+<p>当前项目目录安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm install webpack --save</div><div class="line">npm install webpack-dev-server --save</div></pre></td></tr></table></figure></p>
+<p>当前项目目录下创建webpack.config.js文件，使用以下代码初始化配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">var webpack = require(&apos;webpack&apos;)</div><div class="line">var path = require(&apos;path&apos;)</div><div class="line"></div><div class="line">module.exports = &#123;</div><div class="line">	context: __dirname + &apos;/src&apos;,</div><div class="line">	entry: &quot;./js/index.js&quot;,</div><div class="line">	module: &#123;</div><div class="line">		loaders: [&#123;</div><div class="line">			test: /\.js?$/,</div><div class="line">			exclude: /(node_modules)/,</div><div class="line">			loader: &apos;babel-loader&apos;,</div><div class="line">			query: &#123;</div><div class="line">				presets: [&apos;react&apos;, &apos;es2015&apos;]</div><div class="line">			&#125;</div><div class="line">		&#125;]</div><div class="line">	&#125;,</div><div class="line">	output: &#123;</div><div class="line">		path: __dirname + &quot;/src/&quot;,</div><div class="line">		publicPath: &quot;/src/&quot;, </div><div class="line">		filename: &quot;bundle.js&quot;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>启动webpack<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">webpack-dev-server --content-base --inline --hot</div></pre></td></tr></table></figure></p>
+<p>作用: 通过webpack.config.js中的publicPath的配置，监视src目录的变化自动更新bundle.js文件来进行热刷新</p>
+<p>在浏览器链接中输入<a><a href="http://localhost:8080/" target="_blank" rel="external">http://localhost:8080/</a></a>打开即可看到Hello React</p>
+<h2 id="React组件基础"><a href="#React组件基础" class="headerlink" title="React组件基础"></a>React组件基础</h2><h3 id="1-React虚拟Dom的概念"><a href="#1-React虚拟Dom的概念" class="headerlink" title="1. React虚拟Dom的概念"></a>1. React虚拟Dom的概念</h3><h4 id="1-1-什么是虚拟DOM"><a href="#1-1-什么是虚拟DOM" class="headerlink" title="1.1 什么是虚拟DOM"></a>1.1 什么是虚拟DOM</h4><p>  在React中，render执行的结果得到的并不是真正的dom节点，结果仅仅是轻量级的JavaScript对象，称之为virtual Dom<br>  虚拟DOM是React中的一大亮点，具有batching(批处理)和高效的Diff算法。这让我们可以无需担心性能问题而”毫无顾忌“的随时”刷新“整个页面，由虚拟DOM来确保只对界面变化的部分进行实际的DOM操作。在实际开发中基本上不需要关注虚拟DOM是如何运行的，但是理解其运行机制有助于更好的理解React组件的生命周期，从而进一步优化React的程序。</p>
+<h4 id="1-2-虚拟DOM-VS-直接操作原生DOM"><a href="#1-2-虚拟DOM-VS-直接操作原生DOM" class="headerlink" title="1.2 虚拟DOM VS 直接操作原生DOM"></a>1.2 虚拟DOM VS 直接操作原生DOM</h4><p>如何没有virtual Dom，简单说就是直接重置innerHTML。这样在一个大型列表的所有数据变化的情况下比较合理，但是只有一列发生变化，会造成大量浪费。<br>比较innerHTML和Virtual Dom的重绘过程如下：<br>innerHTML: render html string + 重新创建所有DOM元素<br>Virtual DOM: render Virtual DOM + diff + 必要的DOM更新。</p>
+<p>和 DOM操作比起来，js计算是非常便宜的。Virtual DOM render + diff显然比渲染html字符串要慢，但是，它依然是纯js层面的计算，比起后面的DOM操作来说，便宜了太多。</p>
+<p>React.js相对于直接操作原生DOM有很大的性能优势，很大程度上都要归功于virtual DOM的batching和diff。batching把所有的DOM操作搜集起来，一次性提交给真是的DOM。diff算法时间复杂度也从标准被diff算法的O(n^3)降到了O(n)。</p>
+<h3 id="2-React组件"><a href="#2-React组件" class="headerlink" title="2. React组件"></a>2. React组件</h3><p>组件是react中的一个重要的特性，利用组件化可以高度重用不同的模块从而实行模块的开发。<br>使用React快速创建一个组件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">import React from &apos;react&apos;</div><div class="line"></div><div class="line">export default class BodyComponent extends React.Component &#123;</div><div class="line">	render() &#123;</div><div class="line">		return (</div><div class="line">			&lt;div&gt;</div><div class="line">				BodyComponent</div><div class="line">			&lt;/div&gt;</div><div class="line">		)</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>入口处的使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">import React from &apos;react&apos;</div><div class="line">import ReactDom from &apos;react-dom&apos;</div><div class="line">import BodyComponent from &apos;./bodyComponent&apos;</div><div class="line"></div><div class="line">class Index extends React.Component &#123;</div><div class="line">	render() &#123;</div><div class="line">		return (</div><div class="line">			&lt;BodyComponent /&gt;</div><div class="line">		)</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">ReactDom.render(</div><div class="line">	&lt;Index /&gt;,</div><div class="line">	document.getElementById(&apos;example&apos;)</div><div class="line">)</div></pre></td></tr></table></figure></p>
+<p>注意点：</p>
+<ol>
+<li>组件的return函数返回的HTML节点只有一个节点。</li>
+<li>提供给外部使用定义的组件: <code>export default class Component from React.Component</code></li>
+<li>入口的定义: <code>ReactDom.render(组件名称, document.getElementById(‘example’))</code></li>
+</ol>
+<h3 id="3-React多组件的嵌套"><a href="#3-React多组件的嵌套" class="headerlink" title="3. React多组件的嵌套"></a>3. React多组件的嵌套</h3><p>组件的参数传递<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;BodyComponent test=&quot;haha&quot;/&gt;</div></pre></td></tr></table></figure></p>
+<p>在BodyComponent里面访问test属性<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">import React from &apos;react&apos;</div><div class="line"></div><div class="line">export default class BodyComponent extends React.Component &#123;</div><div class="line">	render() &#123;</div><div class="line">		return (</div><div class="line">			&lt;div&gt;</div><div class="line">				BodyComponent &#123;this.props.test&#125;</div><div class="line">			&lt;/div&gt;</div><div class="line">		)</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>总结：访问外部传递的属性使用 {this.props.属性名}即可</p>
+<h3 id="4-JSX内置表达式"><a href="#4-JSX内置表达式" class="headerlink" title="4. JSX内置表达式"></a>4. JSX内置表达式</h3><p>常用的表达式均支持，这里主要讲下一些不太寻常的表达式<br>三目运算符<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">const flag = true</div><div class="line">&#123;flag == false? &apos;张三&apos;: &apos;李四&apos;&#125;</div></pre></td></tr></table></figure></p>
+<p>注释代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;/*注释*/&#125;</div></pre></td></tr></table></figure></p>
+<p>HTML转义<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var content = &apos;&lt;strong&gt;content&lt;/strong&gt;&apos;</div><div class="line"></div><div class="line">render() &#123;</div><div class="line">    return (</div><div class="line">        &lt;div&gt;&#123;content&#125;&lt;/div&gt;</div><div class="line">    )</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>输出结果:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;strong&gt;content&lt;/strong&gt;</div></pre></td></tr></table></figure></p>
+<p>React会进行HTML转义，防止XSS攻击，如果不需要转义，可以按照以下方式写<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;span dangerouslySetInnerHTML=&#123;&#123;__html: content&#125;&#125;&gt;&lt;/span&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="5-React组件的生命周期"><a href="#5-React组件的生命周期" class="headerlink" title="5. React组件的生命周期"></a>5. React组件的生命周期</h3><p>在组件的整个生命周期中，随着该组件的props或者state发生变化，它的DOM表现也将有相应的变化，一个组件就是一个状态机，对于特定的输入，它总会返回一致的输出。React为每个组件提供了生命周期的钩子函数去响应不同的时刻，组件的生命周期分为3个部分：(1)实例化; (2)存在期; (3) 销毁期;</p>
+<p><img src="http://static.codeceo.com/images/2016/03/ajs-life.png"></p>
+<h4 id="5-1-实例化"><a href="#5-1-实例化" class="headerlink" title="5.1 实例化"></a>5.1 实例化</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">import React from &apos;react&apos;</div><div class="line"></div><div class="line">export default class BodyComponent extends React.Component &#123;</div><div class="line">	constructor(props) &#123;</div><div class="line">		super(props)</div><div class="line"></div><div class="line">		console.log(&apos;props : &apos; + props)</div><div class="line"></div><div class="line"></div><div class="line">		this.state = &#123;&#125;</div><div class="line">		console.log(&apos;state init&apos;)</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	componentWillMount() &#123;</div><div class="line">		console.log(&apos;componentWillMount&apos;)</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	componentDidMount() &#123;</div><div class="line">		console.log(&apos;componentDidMount&apos;)</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	render() &#123;</div><div class="line">		console.log(&apos;render&apos;)</div><div class="line"></div><div class="line">		return (</div><div class="line">			&lt;div&gt;&lt;/div&gt;</div><div class="line">		)</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>输出结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">props : [object Object]</div><div class="line">bundle.js:31670 state init</div><div class="line">bundle.js:31677 componentWillMount</div><div class="line">bundle.js:31687 render</div><div class="line">bundle.js:31682 componentDidMount</div></pre></td></tr></table></figure></p>
+<h5 id="5-1-1-创建阶段"><a href="#5-1-1-创建阶段" class="headerlink" title="5.1.1 创建阶段"></a>5.1.1 创建阶段</h5><p>在ES5中，该阶段主要是发生在创建组件类的时候，即调用React.createClass的时候。这个阶段只是出发一个getDefaultProps方法，该方法返回一个对象，并且缓存下来。然后与父组件指定的props对象进行一个合并，最后赋值给this.props作为该组件的默认属性。对于那些没有被父组件指定的props属性的新建实例来说，这个方法返回的对象可用于实例设置默认的props值。<br>在ES6中，统一通过constructor构造函数传递props方法</p>
+<h4 id="5-2-实例化阶段"><a href="#5-2-实例化阶段" class="headerlink" title="5.2 实例化阶段"></a>5.2 实例化阶段</h4><p>该阶段主要发生在实例化组件类的时候，也就是改组件类被调用的时候:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ReactDom.render(</div><div class="line">	&lt;Index /&gt;,</div><div class="line">	document.getElementById(&apos;example&apos;)</div><div class="line">)</div></pre></td></tr></table></figure></p>
+<p>调用顺序呢:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ES5中的getInitialState用来初始化组件的state的值，其返回值会赋值给组件的this.state属性。对于组件的每个实例来说，这个方法的调用次数有且只有一次。与getDefaultProps方法不同的是，每次实例创建时该方法都会被调用一次。</div><div class="line">ES6在constructor构造函数中直接设置即可</div><div class="line">componentWillMount 此方法在完成首次渲染之前被调用。这也是在render方法调用前可以修改组件state的最后一次机会</div><div class="line">render 生成页面需要的DOM结构,用来表示组件的输出.render方法需要满足: 1) 只能通过this.props和this.state访问数据 2)可以返回null、false或者任何React组件 3)只能出现一个顶级组件，也就说只有一个节点 4)必须纯净，不能改变组件的状态或者DOM的输出</div><div class="line">componentDidMount 该方法发生在render方法成功调用并且真实的DOM已经被渲染之后。</div></pre></td></tr></table></figure></p>
+<p>整个ReactJS DOM的变化是依赖状态机中的数据的变化而重新渲染dom的。状态机-state是整个ReactJS中的重要概念。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">state：是组件的属性，主要是用来存储组件自身需要的数据。它是可以改变的，它的每次改变都会引起组件的更新，这是ReactJS中的关键点。每次数据的更新都是通过修改state属性的值，然后ReactJS内部会去监听state属性的变化，一旦发生变化，就会主动触发组件的render方法来进行DOM结构的更新</div></pre></td></tr></table></figure></p>
+<h4 id="5-3-存在期"><a href="#5-3-存在期" class="headerlink" title="5.3 存在期"></a>5.3 存在期</h4><p>之前的内容已经了解到，此时组件已经渲染好并且用户可以与之进行交互，比如鼠标点击、手指触摸或者键盘一些输入在出发一个事件处理器。随着用户改变了组件或者整个应用的state，这个时候便会有state流入组件的结构树。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div></pre></td><td class="code"><pre><div class="line">import React from &apos;react&apos;</div><div class="line"></div><div class="line">export default class BodyComponent extends React.Component &#123;</div><div class="line">	constructor(props) &#123;</div><div class="line">		super(props)</div><div class="line"></div><div class="line">		this.state = &#123;</div><div class="line">			num: 1,</div><div class="line">			pName: props.pName,</div><div class="line">			name: props.name</div><div class="line">		&#125;</div><div class="line">		console.log(&apos;state init&apos;)</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	componentWillMount() &#123;</div><div class="line">		console.log(&apos;componentWillMount&apos;)</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	componentDidMount() &#123;</div><div class="line">		console.log(&apos;componentDidMount&apos;)</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	componentWillReceiveProps() &#123;</div><div class="line">		console.log(&apos;componentWillReceiveProps&apos;)</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	shouldComponentUpdate() &#123;</div><div class="line">		console.log(&apos;shouldComponentUpdate&apos;)</div><div class="line">		return true</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	componentWillUpdate() &#123;</div><div class="line">		console.log(&apos;componentWillUpdate&apos;)</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	componentDidUpdate() &#123;</div><div class="line">		console.log(&apos;componentDidUpdate&apos;)</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	render() &#123;</div><div class="line">		console.log(&apos;render&apos;)</div><div class="line"></div><div class="line">		return (</div><div class="line">			&lt;div&gt;</div><div class="line">				BodyComponent &lt;br/&gt;</div><div class="line">				&lt;strong&gt;&#123;this.props.name&#125;&lt;/strong&gt; &lt;br/&gt;</div><div class="line">				&lt;strong&gt;&#123;this.state.pName&#125;&lt;/strong&gt;</div><div class="line">				&lt;button onClick=&#123;()=&gt;&#123;this.add()&#125;&#125;&gt;</div><div class="line">					hello &lt;strong&gt;&#123;this.state.num&#125;&lt;/strong&gt;</div><div class="line">				&lt;/button&gt;</div><div class="line">			&lt;/div&gt;</div><div class="line">		)</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	add() &#123;</div><div class="line">		console.log(&apos;add事件&apos;)</div><div class="line">		this.setState(&#123;</div><div class="line">			num: this.state.num + 1,</div><div class="line">			pName: &quot;子类修改的newName&quot;,</div><div class="line">		&#125;)</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">BodyComponent.defaultProps = &#123;</div><div class="line">	pName: &quot;子组件&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>输出结果:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">shouldComponentUpdate</div><div class="line">componentWillUpdate</div><div class="line">render</div><div class="line">componentDidUpdate</div></pre></td></tr></table></figure>
+<p>这段代码就是提供一个button用来改变state状态，当state状态发生改变的时候，组件逐渐开始收到影响。</p>
+<p>注意点：setProps方法已经废弃，不能使用，props一旦创建则不可以修改</p>
+<h4 id="5-4-销毁-amp-清理"><a href="#5-4-销毁-amp-清理" class="headerlink" title="5.4 销毁&amp;清理"></a>5.4 销毁&amp;清理</h4><p><strong>componentWillUnmount</strong></p>
+<p>每当react使用完一个组件，这个组件从DOM中卸载然后被销毁。此时有一个钩子函数可被响应，在该方法中可以做一些清理和销毁工作。</p>
+<h2 id="React属性与事件"><a href="#React属性与事件" class="headerlink" title="React属性与事件"></a>React属性与事件</h2><h3 id="1-React属性"><a href="#1-React属性" class="headerlink" title="1. React属性"></a>1. React属性</h3><h4 id="1-1-State属性"><a href="#1-1-State属性" class="headerlink" title="1.1 State属性"></a>1.1 State属性</h4><p>每一个React组件都拥有自己的state，state只存在于组件的内部，不是组件间的共享。state可以用来确定一个元素的视图状态。</p>
+<p><strong>state的作用域名只属于当前的类，不污染其他模块</strong></p>
+<p>在constructor函数中初始化:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">this.state = &#123;</div><div class="line">	name : &quot;zhangsan&quot;,</div><div class="line">	num : 1</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>修改state属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">this.setState(&#123;</div><div class="line">  num : num + 1</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>调用setState的时候，会调用<strong>存在期</strong>的钩子方法。只要调用setState方法，render就会被调用，render返回的值发生变化，虚拟DOM就会更新，真实的DOM也会更新，整个界面就会发生变化。</p>
+<h4 id="2-1-Props属性"><a href="#2-1-Props属性" class="headerlink" title="2.1 Props属性"></a>2.1 Props属性</h4><h5 id="2-1-1-props基础"><a href="#2-1-1-props基础" class="headerlink" title="2.1.1 props基础"></a>2.1.1 props基础</h5><p>props属性对于模块来说属于<strong>外来</strong>属性，可以从外部传递任意类型的数据到组件中。</p>
+<p>props属性一旦创建就不可以修改。</p>
+<p>也可以在组件内部定义一些props的常量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">BodyComponent.defaultProps = &#123;</div><div class="line">	pName: &quot;子组件&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在组件模块接受参数的方式:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">this.props.pName</div><div class="line">this.props.userName</div></pre></td></tr></table></figure>
+<h5 id="2-2-2-propTypes"><a href="#2-2-2-propTypes" class="headerlink" title="2.2.2 propTypes"></a>2.2.2 propTypes</h5><p>通过在组件中定义一个配置对象用来校验props.</p>
+<p>首先需要安装prop-types</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm i prop-types --save</div></pre></td></tr></table></figure>
+<p>使用方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">import PropTypes from &apos;prop-types&apos;;</div><div class="line">BodyComponent.propTypes = &#123;</div><div class="line">	name: PropTypes.string.isRequired</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>组件初始化的时候，需要去检查name的配置，上述代码设置的是传入的name必须是string，必须要传入，不能不传入该参数。</p>
+<p>propTypes常用类型:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">optionalArray: PropTypes.array,</div><div class="line">optionalBool: PropTypes.bool,</div><div class="line">optionalFunc: PropTypes.func,</div><div class="line">optionalNumber: PropTypes.number,</div><div class="line">optionalObject: PropTypes.object,</div><div class="line">optionalString: PropTypes.string,</div><div class="line">optionalSymbol: PropTypes.symbol,</div></pre></td></tr></table></figure>
+<h3 id="2-React事件"><a href="#2-React事件" class="headerlink" title="2. React事件"></a>2. React事件</h3><h4 id="2-1-事件与数据的双向绑定"><a href="#2-1-事件与数据的双向绑定" class="headerlink" title="2.1 事件与数据的双向绑定"></a>2.1 事件与数据的双向绑定</h4><h5 id="2-1-1-事件绑定"><a href="#2-1-1-事件绑定" class="headerlink" title="2.1.1 事件绑定"></a>2.1.1 事件绑定</h5><p>React的事件处理和原生一样。触发场景也是和原生是一样的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;button onClick=&#123;this.handleAddClicked&#125;&gt;&lt;/button&gt;</div></pre></td></tr></table></figure>
+<p>用户点击这个按钮，则可以触发这个事件</p>
+<p>注意点：</p>
+<ol>
+<li><p>在handleAddClicked方法中会有一个默认参数是event，事件对象.</p>
+</li>
+<li><p>在handleAddClicked方法中a按照上面的写法获取this对象是获取不到的</p>
+<p>如何获取？以下两种方式均可获取</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;button onClick=&#123;this.handleAddClicked.bind(this)&#125;&gt;&lt;/button&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;button onClick=&#123;()=&gt;console.log(&apos;xxx&apos; + this)&#125;&gt;这是一个测试按钮&lt;/button&gt;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h5 id="2-2-2-事件对象"><a href="#2-2-2-事件对象" class="headerlink" title="2.2.2 事件对象"></a>2.2.2 事件对象</h5><p>一般情况下事件触发就会完成，但是有时候需要和用户交互监听用户的输入信息，及时提醒用户。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;textarea onChange=&#123;(event)=&gt;&#123;console.log(event.target.value)&#125;&#125;/&gt;</div></pre></td></tr></table></figure>
+<h5 id="2-2-3-子组件向父组件传递参数"><a href="#2-2-3-子组件向父组件传递参数" class="headerlink" title="2.2.3 子组件向父组件传递参数"></a>2.2.3 子组件向父组件传递参数</h5><p>子组件向父组件传递参数，通过props从父组件中传递一个函数到子组件</p>
+<p>index.js代码如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;BodyComponent name=&#123;this.state.name&#125; changeName=&#123;(name)=&gt;&#123;this.setState(&#123;name: name&#125;)&#125;&#125;/&gt;</div></pre></td></tr></table></figure>
+<p>bodyComponent.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;input onChange=&#123;(event)=&gt;&#123;this.props.changeName(event.target.value)&#125;&#125; /&gt;</div></pre></td></tr></table></figure>
+<p>本质上其实就是<strong>在子组件中通过调用父组件传递过来的props属性</strong>，只不过此时属性是一个函数而已。</p>
+<h4 id="2-2-组件的Refs"><a href="#2-2-组件的Refs" class="headerlink" title="2.2 组件的Refs"></a>2.2 组件的Refs</h4><p>在React中大多数情况就是数据的展示，通过父类组件传递的props，子类组件自身state装太的变化来控制页面的变化。但是有些情况需要获取到组件中的某个DOM节点，修改DOM的内容或者样式。</p>
+<p>例如：通过点击一个按钮修改div的颜色</p>
+<h5 id="2-2-1-获取DOM节点"><a href="#2-2-1-获取DOM节点" class="headerlink" title="2.2.1 获取DOM节点"></a>2.2.1 获取DOM节点</h5><p>设置一个id</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;myId&quot; style=&#123;styles.div1&#125;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>使用原生JS的方式实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var div1 = document.getElementById(&quot;myId&quot;)</div><div class="line">div1.style.backgroundColor = &quot;yellow&quot;</div></pre></td></tr></table></figure>
+<p>使用react中的方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var div1 = document.getElementById(&quot;myId&quot;)		ReactDOM.findDOMNode(div1).style.backgroundColor = &apos;yellow&apos;</div></pre></td></tr></table></figure>
+<p>以上两种方式都是通过原生js先获取到DOM节点，不太符合react特性.</p>
+<h5 id="2-2-2-使用refs"><a href="#2-2-2-使用refs" class="headerlink" title="2.2.2 使用refs"></a>2.2.2 使用refs</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div ref=&quot;myId&quot; style=&#123;styles.div1&#125;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>使用方式:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">this.refs.myId.style.backgroundColor = &apos;yellow&apos;</div></pre></td></tr></table></figure>
+<p>在新版的React已经不推荐使用ref string了 ，而是使用ref callback</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div ref=&#123;(child)=&gt;&#123;this._child = child&#125;&#125; style=&#123;styles.div1&#125;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">this._child.style.backgroundColor = &apos;yellow&apos;</div></pre></td></tr></table></figure>
+<p><strong>总结:</strong></p>
+<ol>
+<li>Refs是访问到组件内部DOM节点的唯一可靠方法（建议使用callback方式）</li>
+<li>Refs会自动销毁对子组件的引用</li>
+<li>不要在render或render之前去获取DOM节点</li>
+<li>不要滥用ref</li>
+</ol>
+<h4 id="2-3-独立组件间共享Mixins"><a href="#2-3-独立组件间共享Mixins" class="headerlink" title="2.3 独立组件间共享Mixins"></a>2.3 独立组件间共享Mixins</h4><p>React的组件之间是模块化开发，彼此之间相互独立，但是有时候不同组件之间公用一个功能，例如utils的一些方法，工具方法等等, 所以React就提供了mixins这种方式来处理。</p>
+<p>在ES6需要安装插件:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install react-mixin --save</div></pre></td></tr></table></figure>
+<p>创建独立模块tools.js 用来存储一些工具方法.</p>
+<p>例如tools.js中有一个log方法:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">const Tools = &#123;</div><div class="line">	log() &#123;</div><div class="line">		console.log(&apos;这是一个测试方法&apos;)</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">export default Tools</div></pre></td></tr></table></figure>
+<p>在index.js中使用:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">import ReactMixin from &apos;react-mixin&apos;</div><div class="line">import Tools from &apos;./tools&apos;</div></pre></td></tr></table></figure>
+<p>使用的代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Tools.log()</div></pre></td></tr></table></figure>
+<p><strong>注意点:</strong> mixin本身就是一个模块，所以具有类似的生命周期。</p>
+<p>如果使用ES6编写React代码，不太建议使用React的mixin机制。</p>
+<h2 id="React样式"><a href="#React样式" class="headerlink" title="React样式"></a>React样式</h2><h3 id="1-内联样式"><a href="#1-内联样式" class="headerlink" title="1. 内联样式"></a>1. 内联样式</h3><h4 id="1-1-对象样式"><a href="#1-1-对象样式" class="headerlink" title="1.1 对象样式"></a>1.1 对象样式</h4><p>React的样式基本是和CSS一致，需要注意的是，如果使用内联样式，属性需要是<strong>驼峰命名</strong></p>
+<p>其实本质是对象样式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div style=&#123;&#123;backgroundColor: &apos;#ccc&apos;, color: &apos;red&apos;&#125;&#125;&gt;内联样式&lt;/div&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">const styles = &#123;</div><div class="line">	div1: &#123;</div><div class="line">    	backgroundColor: &apos;purple&apos;,</div><div class="line">		color: &apos;yellow&apos;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">&lt;div style = &#123;styles.div1&#125; &gt; 内联样式 &lt;/div&gt;</div></pre></td></tr></table></figure>
+<h4 id="1-2-CSS样式"><a href="#1-2-CSS样式" class="headerlink" title="1.2 CSS样式"></a>1.2 CSS样式</h4><ol>
+<li><p>为什么需要css样式</p>
+<p>a. 样式需要重用</p>
+<p>b. 前端大量的样式框架，例如less，sass， stylus等等可以更方便编写页面</p>
+<p>c. 对象样式没办法使用伪类和动画</p>
+</li>
+<li><p>css样式的实现方式</p>
+<p>a. 在index.html中引入style.css的文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;./src/css/style.css&quot;&gt;</div></pre></td></tr></table></figure>
+<p>b. 在style.js中编写选择器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;styleContainer&quot;&gt;</div><div class="line">	&lt;div style=&#123;&#123;backgroundColor: &apos;#ccc&apos;, color: &apos;red&apos;&#125;&#125;&gt;内联样式&lt;/div&gt; </div><div class="line">	&lt;div style = &#123;this.styles.div1&#125;&gt; 内联样式 &lt;/div&gt;</div><div class="line">	&lt;div className=&quot;outter&quot;&gt;我是外部样式&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>c. 编写style.css文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">#styleContainer &#123;</div><div class="line">	background-color: yellow ;</div><div class="line">	width:  200px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">#container .outter &#123;</div><div class="line">	background-color: orange;</div><div class="line">	color:  white;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>注意点:</strong></p>
+<p>在React中的类选择器需要使用className, 因为class在react是关键字.</p>
+</li>
+</ol>
+<h3 id="2-CSS模块化"><a href="#2-CSS模块化" class="headerlink" title="2. CSS模块化"></a>2. CSS模块化</h3><p>CSS模块化方案很多，主要有2种：</p>
+<p>1、 彻底抛弃CSS，使用JS或者JSON来写样式。比如上面讲到的react-style就是属于这一类。</p>
+<p>优点：给CSS提供了JS同样强大的模块化处理</p>
+<p>缺点：不能使用成熟的CSS预处理器 Sass/Less/Stylus， :hover 和 :active处理非常麻烦。</p>
+<p>2、依旧使用CSS，使用JS来管理样式，例如上面所讲到方式来管理，但是这种方式其实会有很多问题，所以需要引入CSS Modules来处理。</p>
+<h4 id="2-1-CSS模块化遇到问题"><a href="#2-1-CSS模块化遇到问题" class="headerlink" title="2.1 CSS模块化遇到问题"></a>2.1 CSS模块化遇到问题</h4><h5 id="2-1-1-全局污染"><a href="#2-1-1-全局污染" class="headerlink" title="2.1.1 全局污染"></a>2.1.1 全局污染</h5><p>CSS使用全局选择器机制来设置样式，优点是方便重写样式，缺点就是全局生效，可能会被覆盖，产生丑陋的<strong>!import</strong>。CSS中的权重问题，也提高了bug的出现率和使用成本。</p>
+<h5 id="2-1-2-命名混乱"><a href="#2-1-2-命名混乱" class="headerlink" title="2.1.2 命名混乱"></a>2.1.2 命名混乱</h5><p>由于全局污染的问题，多人开发时会为了避免样式冲突，选择器的命名越来越复杂，非常混乱.</p>
+<h5 id="2-1-3-依赖管理不彻底"><a href="#2-1-3-依赖管理不彻底" class="headerlink" title="2.1.3 依赖管理不彻底"></a>2.1.3 依赖管理不彻底</h5><p>组件应该相互独立，引入组件的时候，应该只需要引入需要的CSS样式，但是现在做法是引入JS，还需引入CSS，而Sass/less很难对每个组件单独编译出CSS，引入所有的CSS浪费。JS的模块化很成熟了，如果能够让JS来管理CSS是很好的解决办法。Webpack 中 <strong>css-loader</strong>就提供了这种能力。</p>
+<h5 id="2-1-4-无法共享变量"><a href="#2-1-4-无法共享变量" class="headerlink" title="2.1.4 无法共享变量"></a>2.1.4 无法共享变量</h5><p>复杂组件要使用JS和CSS来共同处理样式，就会造成变量冗余，Sass/less都不提供跨JS和CSS的共享变量的能力。</p>
+<h5 id="2-1-4-代码压缩不彻底"><a href="#2-1-4-代码压缩不彻底" class="headerlink" title="2.1.4 代码压缩不彻底"></a>2.1.4 代码压缩不彻底</h5><p>由于移动端网络的不确定，现在对CSS压缩到了一种变态的成都。很多压缩工具为了节省一个字节就会把’16px’转换为’1pc’。但对非常长的class名就无能为力了。</p>
+<p><strong>总结</strong></p>
+<p>上面遇到的问题CSS自身目前是无法解决的，但是如果通过JS来管理CSS就很好的解决，在React中使用对象样式，其实就是完全抛弃了CSS，在JS中以对象语法来写CSS，这个也是比较蛋疼的~。 直到出现了CSS Modules.</p>
+<h4 id="2-2-CSS-Modules模块化方案"><a href="#2-2-CSS-Modules模块化方案" class="headerlink" title="2.2 CSS Modules模块化方案"></a>2.2 CSS Modules模块化方案</h4><h5 id="2-2-1-CSS模块化在React中的使用"><a href="#2-2-1-CSS模块化在React中的使用" class="headerlink" title="2.2.1 CSS模块化在React中的使用"></a>2.2.1 CSS模块化在React中的使用</h5><p>css-loader安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm install css-loader --save</div><div class="line">npm install style-loader --save</div></pre></td></tr></table></figure>
+<p>webpack配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">			test: /\.css$/,</div><div class="line">			loader: &apos;style-loader!css-loader?modules&amp;importLoaders=1&amp;localIdentName=[name]__[local]__[hash:base64:5]&apos;</div><div class="line">		&#125;</div></pre></td></tr></table></figure>
+<p>使用方式:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import cssStyle from &apos;../css/style.css&apos;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;div className=&#123;cssStyle.styleContainer&#125;&gt;</div><div class="line">	&lt;div style=&#123;&#123;backgroundColor: &apos;#ccc&apos;, color: &apos;red&apos;&#125;&#125;&gt;内联样式&lt;/div&gt; </div><div class="line">	&lt;div style = &#123;this.styles.div1&#125;&gt; 内联样式 &lt;/div&gt;</div><div class="line">	&lt;div className=&#123;cssStyle.outter&#125;&gt;我是外部样式&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>这里有个小技巧，className改成class</p>
+<p>安装babel-plugin-react-html-attrs</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install babel-plugin-react-html-attrs --save</div></pre></td></tr></table></figure>
+<p>配置.babelrc, 在根目录使用vim配置下即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;plugins&quot;: [</div><div class="line">    &quot;react-html-attrs&quot;</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="2-2-2-CSS-Modules"><a href="#2-2-2-CSS-Modules" class="headerlink" title="2.2.2 CSS Modules"></a>2.2.2 CSS Modules</h5><p>在上一节中，了解了CSS Modules在React的使用方式, 在这里稍微简单的记录一下CSS Modules的原理</p>
+<p>CSS Modules内部通过ICSS来解决样式的导入和导出的问题。分别对应<strong>:import</strong>和<strong>:export</strong>两个新增的伪类。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">:import(&quot;path/to/dep.css&quot;) &#123;</div><div class="line">  localAlias: keyFromDep ;</div><div class="line">&#125;</div><div class="line">:export &#123;</div><div class="line">  exportedKey: exportedValue ;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>直接使用这两个关键字太麻烦了，实际项目中很少直接用它，需要用的是JS来管理CSS的能力。结合Webpack的css-loader可以解决这个问题。</p>
+<p>在webpack中启用CSS Modules</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">loader: &apos;style-loader!css-loader?modules&amp;importLoaders=1&amp;localIdentName=[name]__[local]__[hash:base64:5]&apos;</div></pre></td></tr></table></figure>
+<p>最后生成出来的class选择器是混淆过的class名.</p>
+<p>通过这些简单的处理:</p>
+<ol>
+<li>所有的样式都是local的，避免命名冲突和全局污染问题</li>
+<li>class名生成规则可以灵活配置，用来压缩class名</li>
+<li>只需要按照组件的JS方式可以搞定所有的JS和CSS</li>
+<li>依旧是CSS, 无学习成本</li>
+</ol>
+<p>使用CSS Modules之后，其实相当于给每个class名外加了一个<strong>:local</strong>,以此来实现样式的局部化，如果想切换到全局模式，使用对应的<strong>:global</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">.normal &#123;</div><div class="line">  color: green ;</div><div class="line">&#125;</div><div class="line">/* 等价于 */</div><div class="line">:local(.normal) &#123;</div><div class="line">  color: green ;</div><div class="line">&#125;</div><div class="line">/* 定义全局 */</div><div class="line">:global(.btn) &#123;</div><div class="line">  color: red ;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使用<strong>composes</strong>来组合样式, 简单的说有点像是继承关系，本质上是添加了2个class</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">.base &#123; /*通用样式*/&#125;</div><div class="line">.normal &#123;</div><div class="line">  composes: base;</div><div class="line">&#125;</div><div class="line">.disable &#123;</div><div class="line">  composes: base;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>composes还可以来组合外部样式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.primary &#123;</div><div class="line">  composes: base;</div><div class="line">  composes: $primary-color from &apos;/settings.css&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="2-2-3-CSS-Modules使用技巧"><a href="#2-2-3-CSS-Modules使用技巧" class="headerlink" title="2.2.3 CSS Modules使用技巧"></a>2.2.3 CSS Modules使用技巧</h5><p>CSS Modules是对现有的CSS做减法。为了追求简单可控，建议遵守以下原则：</p>
+<ol>
+<li>不使用选择器，只是用class名来定义样式</li>
+<li>不层叠多个class， 只是用一个class把所有样式定义好</li>
+<li>所有的样式通过composes组合来实现复用</li>
+<li>不嵌套</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ReactJS/" rel="tag"># ReactJS</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/05/Hexo+Next搭建/" rel="next" title="开始写博客 - Hexo + Next搭建个人博客">
+                <i class="fa fa-chevron-left"></i> 开始写博客 - Hexo + Next搭建个人博客
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="我就是菜怎么啦" />
+          <p class="site-author-name" itemprop="name">我就是菜怎么啦</p>
+           
+              <p class="site-description motion-element" itemprop="description">iOS/前端/Python</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#React基础一览-快速入门"><span class="nav-number">1.</span> <span class="nav-text">React基础一览-快速入门</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#React环境搭建"><span class="nav-number">1.1.</span> <span class="nav-text">React环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-NodeJS的安装"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. NodeJS的安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用NPM配置React开发环境"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. 使用NPM配置React开发环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-webpack配置"><span class="nav-number">1.1.3.</span> <span class="nav-text">3. webpack配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React组件基础"><span class="nav-number">1.2.</span> <span class="nav-text">React组件基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-React虚拟Dom的概念"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. React虚拟Dom的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-什么是虚拟DOM"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">1.1 什么是虚拟DOM</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-虚拟DOM-VS-直接操作原生DOM"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">1.2 虚拟DOM VS 直接操作原生DOM</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-React组件"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. React组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-React多组件的嵌套"><span class="nav-number">1.2.3.</span> <span class="nav-text">3. React多组件的嵌套</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-JSX内置表达式"><span class="nav-number">1.2.4.</span> <span class="nav-text">4. JSX内置表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-React组件的生命周期"><span class="nav-number">1.2.5.</span> <span class="nav-text">5. React组件的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-实例化"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">5.1 实例化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#5-1-1-创建阶段"><span class="nav-number">1.2.5.1.1.</span> <span class="nav-text">5.1.1 创建阶段</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-实例化阶段"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">5.2 实例化阶段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-3-存在期"><span class="nav-number">1.2.5.3.</span> <span class="nav-text">5.3 存在期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-4-销毁-amp-清理"><span class="nav-number">1.2.5.4.</span> <span class="nav-text">5.4 销毁&清理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React属性与事件"><span class="nav-number">1.3.</span> <span class="nav-text">React属性与事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-React属性"><span class="nav-number">1.3.1.</span> <span class="nav-text">1. React属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-State属性"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">1.1 State属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-Props属性"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">2.1 Props属性</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-1-props基础"><span class="nav-number">1.3.1.2.1.</span> <span class="nav-text">2.1.1 props基础</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-2-propTypes"><span class="nav-number">1.3.1.2.2.</span> <span class="nav-text">2.2.2 propTypes</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-React事件"><span class="nav-number">1.3.2.</span> <span class="nav-text">2. React事件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-事件与数据的双向绑定"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">2.1 事件与数据的双向绑定</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-1-事件绑定"><span class="nav-number">1.3.2.1.1.</span> <span class="nav-text">2.1.1 事件绑定</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-2-事件对象"><span class="nav-number">1.3.2.1.2.</span> <span class="nav-text">2.2.2 事件对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-3-子组件向父组件传递参数"><span class="nav-number">1.3.2.1.3.</span> <span class="nav-text">2.2.3 子组件向父组件传递参数</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-组件的Refs"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">2.2 组件的Refs</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-1-获取DOM节点"><span class="nav-number">1.3.2.2.1.</span> <span class="nav-text">2.2.1 获取DOM节点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-2-使用refs"><span class="nav-number">1.3.2.2.2.</span> <span class="nav-text">2.2.2 使用refs</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-独立组件间共享Mixins"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">2.3 独立组件间共享Mixins</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React样式"><span class="nav-number">1.4.</span> <span class="nav-text">React样式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-内联样式"><span class="nav-number">1.4.1.</span> <span class="nav-text">1. 内联样式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-对象样式"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">1.1 对象样式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-CSS样式"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">1.2 CSS样式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-CSS模块化"><span class="nav-number">1.4.2.</span> <span class="nav-text">2. CSS模块化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-CSS模块化遇到问题"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">2.1 CSS模块化遇到问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-1-全局污染"><span class="nav-number">1.4.2.1.1.</span> <span class="nav-text">2.1.1 全局污染</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-2-命名混乱"><span class="nav-number">1.4.2.1.2.</span> <span class="nav-text">2.1.2 命名混乱</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-3-依赖管理不彻底"><span class="nav-number">1.4.2.1.3.</span> <span class="nav-text">2.1.3 依赖管理不彻底</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-4-无法共享变量"><span class="nav-number">1.4.2.1.4.</span> <span class="nav-text">2.1.4 无法共享变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-4-代码压缩不彻底"><span class="nav-number">1.4.2.1.5.</span> <span class="nav-text">2.1.4 代码压缩不彻底</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-CSS-Modules模块化方案"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">2.2 CSS Modules模块化方案</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-1-CSS模块化在React中的使用"><span class="nav-number">1.4.2.2.1.</span> <span class="nav-text">2.2.1 CSS模块化在React中的使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-2-CSS-Modules"><span class="nav-number">1.4.2.2.2.</span> <span class="nav-text">2.2.2 CSS Modules</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-3-CSS-Modules使用技巧"><span class="nav-number">1.4.2.2.3.</span> <span class="nav-text">2.2.3 CSS Modules使用技巧</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">我就是菜怎么啦</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
