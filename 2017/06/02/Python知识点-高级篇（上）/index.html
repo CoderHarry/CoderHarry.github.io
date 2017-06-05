@@ -1,0 +1,903 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Python," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="[TOC]
+Python知识点-高级篇(上)1. 元类1.1 为什么需要元类
+从OOP概念上理解
+在OOP中，类就是一组用来描述如何生成对象的代码段。一切皆为对象，那么问题来了？类是什么？在Python中如何去描述类的？
+为了解决这个问题，python解释器会使用元类去创建类这个对象的。
+下面这段代码
+12class ObjectCreator(object):    pass
+当我们使用clas">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python知识点-高级篇(上)">
+<meta property="og:url" content="http://yoursite.com/2017/06/02/Python知识点-高级篇（上）/index.html">
+<meta property="og:site_name" content="yanzhi's Blog">
+<meta property="og:description" content="[TOC]
+Python知识点-高级篇(上)1. 元类1.1 为什么需要元类
+从OOP概念上理解
+在OOP中，类就是一组用来描述如何生成对象的代码段。一切皆为对象，那么问题来了？类是什么？在Python中如何去描述类的？
+为了解决这个问题，python解释器会使用元类去创建类这个对象的。
+下面这段代码
+12class ObjectCreator(object):    pass
+当我们使用clas">
+<meta property="og:updated_time" content="2017-06-04T12:38:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python知识点-高级篇(上)">
+<meta name="twitter:description" content="[TOC]
+Python知识点-高级篇(上)1. 元类1.1 为什么需要元类
+从OOP概念上理解
+在OOP中，类就是一组用来描述如何生成对象的代码段。一切皆为对象，那么问题来了？类是什么？在Python中如何去描述类的？
+为了解决这个问题，python解释器会使用元类去创建类这个对象的。
+下面这段代码
+12class ObjectCreator(object):    pass
+当我们使用clas">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/06/02/Python知识点-高级篇（上）/"/>
+
+
+
+
+
+  <title> Python知识点-高级篇(上) | yanzhi's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">yanzhi's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">爱生活，爱编程。记录学习生活中的点点滴滴~</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/02/Python知识点-高级篇（上）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="我就是菜怎么啦">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yanzhi's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Python知识点-高级篇(上)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-02T21:12:10+08:00">
+                2017-06-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/进阶/" itemprop="url" rel="index">
+                    <span itemprop="name">进阶</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>[TOC]</p>
+<h3 id="Python知识点-高级篇-上"><a href="#Python知识点-高级篇-上" class="headerlink" title="Python知识点-高级篇(上)"></a>Python知识点-高级篇(上)</h3><h4 id="1-元类"><a href="#1-元类" class="headerlink" title="1. 元类"></a>1. 元类</h4><h5 id="1-1-为什么需要元类"><a href="#1-1-为什么需要元类" class="headerlink" title="1.1 为什么需要元类"></a>1.1 为什么需要元类</h5><ol>
+<li><p>从OOP概念上理解</p>
+<p>在OOP中，类就是一组用来描述如何生成对象的代码段。一切皆为对象，那么问题来了？类是什么？在Python中如何去描述类的？</p>
+<p>为了解决这个问题，python解释器会使用元类去创建类这个对象的。</p>
+<p>下面这段代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ObjectCreator</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="keyword">pass</span></div></pre></td></tr></table></figure>
+<p>当我们使用class创建一个类的时候，解释器就会创建一个对象，名字为ObjectCreator。 这个对象（类对象）拥有创建对象的能力。但是，它本质上仍然是一个对象，所以具备赋值变量，拷贝，增加属性，函数传递等等能力。</p>
+</li>
+<li><p>从Python的动态性理解。</p>
+<p>在一些框架设计中，往往需要根据一些特定的条件动态生成一些对象，这个时候需要动态去创建类，通过元类的创建方式，很容易的实现在运行阶段动态的创建类，属性，方法。</p>
+</li>
+</ol>
+<p>“元类就是深度的魔法，99%的用户应该根本不必为此操心。如果你想搞清楚究竟是否需要用到元类，那么你就不需要它。那些实际用到元类的人都非常清楚地知道他们需要做什么，而且根本不需要解释为什么要用元类。” —— Python界的领袖 Tim Peters。</p>
+<h5 id="1-2-什么是元类"><a href="#1-2-什么是元类" class="headerlink" title="1.2. 什么是元类"></a>1.2. 什么是元类</h5><p>元类就是用来创建类的东西。我们平常创建类的时候就是为了创建实例对象，在python中一切皆为对象，所以元类就是用来创建这些类的对象而存在的。</p>
+<p><strong>元类就是类的类。</strong></p>
+<p>type实际就是一个元类。type就是python在背后创建类的元类。通过<strong> class </strong>属性可以查看当前对象所属的类。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">65</span>]: a = <span class="number">1</span></div><div class="line">In [<span class="number">67</span>]: a.__class__</div><div class="line">Out[<span class="number">67</span>]: int</div><div class="line">In [<span class="number">66</span>]: a.__class__.__class__</div><div class="line">Out[<span class="number">66</span>]: type</div></pre></td></tr></table></figure>
+<p>因此，元类就是创建类这种对象的东西。type就是Python的内建元类。</p>
+<h5 id="1-3-怎么使用元类"><a href="#1-3-怎么使用元类" class="headerlink" title="1.3. 怎么使用元类"></a>1.3. 怎么使用元类</h5><ol>
+<li><p>动态的创建类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">type(类名, 有父类名称组成的元组, 包含属性的字典)</div></pre></td></tr></table></figure>
+<p>1.1 创建空类</p>
+<p>比如下面这段代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">33</span>]: Test = type(<span class="string">"Test"</span>, (), &#123;&#125;)</div><div class="line">In [<span class="number">34</span>]: Test()</div><div class="line">Out[<span class="number">34</span>]: &lt;__main__.Test at <span class="number">0x1069ab3c8</span>&gt;</div></pre></td></tr></table></figure>
+<p>以上代码创建一个Test类，默认继承自object</p>
+<p>1.2 创建一个带有属性的类</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">35</span>]: Test = type(<span class="string">"Test"</span>, (), &#123;<span class="string">'test'</span>: <span class="number">1123</span>&#125;)</div><div class="line">In [<span class="number">36</span>]: Test.test</div><div class="line">Out[<span class="number">36</span>]: <span class="number">1123</span></div><div class="line">In [<span class="number">37</span>]: t = Test()</div><div class="line">In [<span class="number">38</span>]: t.test</div><div class="line">Out[<span class="number">38</span>]: <span class="number">1123</span></div></pre></td></tr></table></figure>
+<p>1.3 使用继承</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">39</span>]: Test2 = type(<span class="string">"Test2"</span>, (Test,), &#123;&#125;)</div><div class="line">In [<span class="number">40</span>]: Test2.test</div><div class="line">Out[<span class="number">40</span>]: <span class="number">1123</span></div></pre></td></tr></table></figure>
+<p><strong>注意点：</strong></p>
+<p><strong>1. type的第二个参数，是父类的名字，而不是字符串</strong></p>
+<p><strong>2. 添加的属性都是类属性，而不是实例属性</strong></p>
+<p>1.4 创建带有方法的类</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">43</span>]: <span class="function"><span class="keyword">def</span> <span class="title">echo_name</span><span class="params">(self)</span>:</span></div><div class="line">    ...:     print(self.name)</div><div class="line">    ...:     </div><div class="line"></div><div class="line">In [<span class="number">44</span>]: Test = type(<span class="string">'Test'</span>, (object,), &#123;<span class="string">"name"</span>: <span class="string">"test"</span>, <span class="string">"echo_name"</span>: echo_name&#125;)</div><div class="line">In [<span class="number">45</span>]: t = Test()</div><div class="line">In [<span class="number">48</span>]: t.echo_name()</div><div class="line">test</div></pre></td></tr></table></figure>
+<p>添加静态方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">50</span>]: @staticmethod</div><div class="line">    ...: <span class="function"><span class="keyword">def</span> <span class="title">testStatic</span><span class="params">()</span>:</span></div><div class="line">    ...:     print(<span class="string">"this is a static method"</span>)</div><div class="line">    ...:     </div><div class="line"></div><div class="line">In [<span class="number">51</span>]: Test = type(<span class="string">'Test'</span>, (object,), &#123;<span class="string">"name"</span>: <span class="string">"test"</span>, <span class="string">"testStatic"</span>: testStatic&#125;)</div><div class="line">In [<span class="number">53</span>]: Test.testStatic()</div><div class="line">this <span class="keyword">is</span> a static method</div></pre></td></tr></table></figure>
+<p>添加类方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">54</span>]: @classmethod</div><div class="line">    ...: <span class="function"><span class="keyword">def</span> <span class="title">testClass</span><span class="params">(cls)</span>:</span></div><div class="line">    ...:     print(cls.name)</div><div class="line">    ...:     </div><div class="line"></div><div class="line">In [<span class="number">55</span>]: Test = type(<span class="string">'Test'</span>, (object,), &#123;<span class="string">"name"</span>: <span class="string">"test"</span>, <span class="string">"testClass"</span>: testClass&#125;)</div><div class="line"></div><div class="line">In [<span class="number">56</span>]: Test.testClass()</div><div class="line">test</div><div class="line"></div><div class="line">In [<span class="number">57</span>]: t = Test()</div><div class="line"></div><div class="line">In [<span class="number">58</span>]: t.testClass()</div><div class="line">test</div></pre></td></tr></table></figure>
+<p>从以上代码就可以看到，在Python中，类也是对象，可以动态的创建类。这也就是我们平常使用class关键字的时候python解释器在幕后做的事情，而这就是通过袁磊来实现的。</p>
+<p>​</p>
+</li>
+<li><p><strong> metaclass </strong> 属性</p>
+<p>你可以在定义一个类的时候为其添加<strong> metaclass </strong>属性</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span><span class="params">(object)</span>:</span></div><div class="line">    __metaclass__ = something</div><div class="line">    <span class="keyword">pass</span></div></pre></td></tr></table></figure>
+<p>如果这么做了，Python就会用元类来创建Foo，小心点，这里面有技巧。首先写下class(object), 但是类Foo还没有在内存中创建。Python会在类的定义中寻找<strong> metaclass</strong> 属性，如果找到，使用它创建类Foo，否则，使用内建的type来创建这个类。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">class Foo(Bar)：</div><div class="line">	pass</div></pre></td></tr></table></figure>
+<p>Python做了如下的操作:</p>
+<ol>
+<li>Foo中有<strong> metaclass</strong> 这个属性吗？如果有，会通过<strong> metaclass</strong>创建一个名字为Foo的类（对象）。</li>
+<li>如果没有找到<strong> metaclass</strong>，它会继续在父类Bar中寻找，如果找到和之前的操作一致</li>
+<li>如果Python在父类中都找不到<strong> metaclass</strong>， 它就会在模块层次中去寻找, 并且尝试同样的操作</li>
+<li>如果还是找不到<strong> metaclass </strong>， 则使用内置的type来创建这个类对象。</li>
+</ol>
+<p>问题来了，你可以在<strong> metaclass </strong>中防止些什么代码呢？ 创建类的东西的代码片段。什么可以创建类呢？ type，或者任何使用到type或者子类化type的东西都可以。</p>
+</li>
+<li><p>自定义元类</p>
+<p>元类的主要目的就是为了创建类能够自动的改变类。通常你会为API做这样的事情，你希望可以创建符合当前上下文的类。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">upper_attr</span><span class="params">(future_class_name, future_class_parents, future_class_attr)</span>:</span></div><div class="line">	newAttr = &#123;&#125;</div><div class="line">	<span class="keyword">for</span> name, value <span class="keyword">in</span> future_class_attr.items():</div><div class="line">		<span class="keyword">if</span> <span class="keyword">not</span> name.startswith(<span class="string">"__"</span>):</div><div class="line">			newAttr[name.upper()] = value</div><div class="line"></div><div class="line">	<span class="keyword">return</span> type(future_class_name, future_class_parents, newAttr)</div></pre></td></tr></table></figure>
+<p>以上代码的作用，就是将类属性名全部变成大写。</p>
+<p>现在我们再来实现一次，这一次用一个真正的class来当元类。    </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UpperAttrMetaClass</span><span class="params">(type)</span>:</span></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__new__</span><span class="params">(cls, future_class_name, future_class_parents, future_class_attr)</span>:</span></div><div class="line">		newAttr = &#123;&#125;</div><div class="line"></div><div class="line">		<span class="keyword">for</span> name, value <span class="keyword">in</span> future_class_attr.items():</div><div class="line">			<span class="keyword">if</span> <span class="keyword">not</span> name.startswith(<span class="string">"__"</span>):</div><div class="line">				newAttr[name.upper()] = value</div><div class="line"></div><div class="line">		<span class="comment"># 推荐使用当前方式</span></div><div class="line">		<span class="keyword">return</span> type.__new__(cls, future_class_name, future_class_parents, newAttr)</div><div class="line">		<span class="comment"># return type(future_class_name, future_class_parents, newAttr)</span></div><div class="line">		<span class="comment"># return super(UpperAttrMetaClass, cls).__new__(cls, future_class_name, future_class_parents, newAttr) </span></div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span><span class="params">(object, metaclass=UpperAttrMetaClass)</span>:</span></div><div class="line">    bar = <span class="string">'bip'</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">	print(hasattr(Foo, <span class="string">'bar'</span>))</div><div class="line">	print(hasattr(Foo, <span class="string">'BAR'</span>))</div><div class="line"></div><div class="line">	foo = Foo()</div><div class="line">	<span class="comment"># print(foo.bar)</span></div><div class="line">	print(foo.BAR)</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="2-Python是动态语言"><a href="#2-Python是动态语言" class="headerlink" title="2. Python是动态语言"></a>2. Python是动态语言</h4><h5 id="2-1-什么是动态语言"><a href="#2-1-什么是动态语言" class="headerlink" title="2.1  什么是动态语言"></a>2.1  什么是动态语言</h5><p>动态语言是高级语言的一个类别，是一类在<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">##### 2.2 动态语言的特性</div><div class="line"></div><div class="line">###### 2.2.1 动态添加对象属性</div><div class="line"></div><div class="line">```python</div><div class="line">In [97]: class Person(object):</div><div class="line">    ...:     def __init__(self, name=None, age = None):</div><div class="line">    ...:         super().__init__()</div><div class="line">    ...:         self.name = name</div><div class="line">    ...:         self.age = age</div><div class="line">    ...:</div></pre></td></tr></table></figure></p>
+<p>创建了一个Person类，定义了name和age两个属性，但是人还有性别。所以我们需要去添加一个性别的属性</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">p = Person(<span class="string">'lisi'</span>, <span class="number">24</span>)</div><div class="line">p.sex = <span class="string">'male'</span></div></pre></td></tr></table></figure>
+<h6 id="2-2-2-动态添加类属性"><a href="#2-2-2-动态添加类属性" class="headerlink" title="2.2.2 动态添加类属性"></a>2.2.2 动态添加类属性</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">类名.类属性 = value</div></pre></td></tr></table></figure>
+<h6 id="2-2-3-动态添加对象-类方法"><a href="#2-2-3-动态添加对象-类方法" class="headerlink" title="2.2.3 动态添加对象/类方法"></a>2.2.3 动态添加对象/类方法</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">say</span><span class="params">(self)</span>:</span></div><div class="line">    print(self.name, self.age)</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">In [109]: p.say = say</div><div class="line">In [110]: p.say()</div><div class="line">---------------------------------------------------------------------------</div><div class="line">TypeError                                 Traceback (most recent call last)</div><div class="line">&lt;ipython-input-110-8963d2f42fd4&gt; in &lt;module&gt;()</div><div class="line">----&gt; 1 p.say()</div><div class="line"></div><div class="line">TypeError: say() missing 1 required positional argument: 'self'</div></pre></td></tr></table></figure>
+<p>如何给对象添加方法？</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">111</span>]: <span class="keyword">import</span> types</div><div class="line">In [<span class="number">112</span>]: p.say = types.MethodType(say, p)</div><div class="line">In [<span class="number">113</span>]: p.say()</div><div class="line">lsi <span class="number">24</span></div></pre></td></tr></table></figure>
+<p>类方法和静态方法如何添加？</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">114</span>]: @classmethod</div><div class="line">     ...: <span class="function"><span class="keyword">def</span> <span class="title">testClass</span><span class="params">(cls)</span>:</span></div><div class="line">     ...:     print(<span class="string">'类方法'</span>)</div><div class="line">     ...:     </div><div class="line">In [<span class="number">115</span>]: @staticmethod</div><div class="line">     ...: <span class="function"><span class="keyword">def</span> <span class="title">testStatic</span><span class="params">()</span>:</span></div><div class="line">     ...:     print(<span class="string">'静态方法'</span>)</div><div class="line">     ...:</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Person.testClass = testClass</div><div class="line">Person.testStatic = testStatic</div><div class="line">p.testClass()</div><div class="line">p.testStatic()</div><div class="line">Person.testClass()</div><div class="line">Person.testStatic()</div></pre></td></tr></table></figure>
+<h6 id="2-2-4-运行过程中删除属性和方法"><a href="#2-2-4-运行过程中删除属性和方法" class="headerlink" title="2.2.4 运行过程中删除属性和方法"></a>2.2.4 运行过程中删除属性和方法</h6><p>删除的语法:</p>
+<ol>
+<li>del 对象.属性名</li>
+<li>delattr(对象, “属性名”)</li>
+</ol>
+<h5 id="2-3-slots"><a href="#2-3-slots" class="headerlink" title="2.3  slots "></a>2.3 <strong> slots </strong></h5><p>了解了动态语言和静态语言的区别</p>
+<p>动态语言：在运行的过程中修改代码</p>
+<p>静态语言：编译时已经确定好了代码，不能修改</p>
+<p>但是有些情况下需要限制实例属性怎么办，比如说对某个实例只允许添加指定的属性？为了解决这个问题，Python允许在定义class的时候，定义一个特殊的<strong> slots </strong>变量，来限制class实例可以添加的属性。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">(object)</span>:</span></div><div class="line">    __slots__ = (<span class="string">"name"</span>, <span class="string">"age"</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">In [126]: p = Person()</div><div class="line">In [127]: p.name = 'lisi'</div><div class="line">In [128]: p.age = 20</div><div class="line">In [129]: p.score = 100</div><div class="line">---------------------------------------------------------------------------</div><div class="line">AttributeError                            Traceback (most recent call last)</div><div class="line">&lt;ipython-input-129-f99b3d6b9079&gt; in &lt;module&gt;()</div><div class="line">----&gt; 1 p.score = 100</div><div class="line"></div><div class="line">AttributeError: 'Person' object has no attribute 'score'</div></pre></td></tr></table></figure>
+<p>注意点:</p>
+<p><strong>使用<strong> slots </strong>注意，定义的属性只对当前实例起作用，继承的子类不起作用</strong></p>
+<h4 id="3-生成器"><a href="#3-生成器" class="headerlink" title="3. 生成器"></a>3. 生成器</h4><h5 id="3-1-什么是生成器"><a href="#3-1-什么是生成器" class="headerlink" title="3.1 什么是生成器"></a>3.1 什么是生成器</h5><h6 id="3-1-1-列表推导"><a href="#3-1-1-列表推导" class="headerlink" title="3.1.1 列表推导"></a>3.1.1 列表推导</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[x for x in range(1, 10)]</div></pre></td></tr></table></figure>
+<h6 id="3-2-2-生成器"><a href="#3-2-2-生成器" class="headerlink" title="3.2.2 生成器"></a>3.2.2 生成器</h6><p>通过列表生产式，很容易创建一个列表，但是由于受到内存的限制，列表的容量肯定是有限制的。而且创建一个包含100万个元素的列表，占用非常大的空间，而且可能我们使用到的仅仅是前面几个元素，后面绝大多数都浪费了。所以，如果列表元素可以按照某种算法推算出来，那我们是否可以在循环的过程中不断推算出后面的元素呢？这样可以不用创建完整的list，节约大量的内存空间。<strong>在Python中，这种一边循环一边计算的机制就称之为生成器:generator。</strong></p>
+<h5 id="3-2-如何创建生成器"><a href="#3-2-如何创建生成器" class="headerlink" title="3.2 如何创建生成器"></a>3.2 如何创建生成器</h5><h6 id="3-2-1-创建生成器的2种方式"><a href="#3-2-1-创建生成器的2种方式" class="headerlink" title="3.2.1 创建生成器的2种方式"></a>3.2.1 创建生成器的2种方式</h6><ol>
+<li><p>创建生成器，把列表生成式的[]改为()即可</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">135</span>]: l = (x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>))</div><div class="line">In [<span class="number">136</span>]: l</div><div class="line">Out[<span class="number">136</span>]: &lt;generator object &lt;genexpr&gt; at <span class="number">0x10f820e08</span>&gt;</div></pre></td></tr></table></figure>
+<p><strong>通过next()函数获得生成器的下一个返回值</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">137</span>]: next(l)</div><div class="line">Out[<span class="number">137</span>]: <span class="number">0</span></div><div class="line">In [<span class="number">138</span>]: next(l)</div><div class="line">Out[<span class="number">138</span>]: <span class="number">1</span></div></pre></td></tr></table></figure>
+<p>生成器保存的是算法，每次调用next(l)，就计算出l的下一个元素的值，直到计算到最后一个元素，如果没有更多的元素的时候，会跑出StopIteration的异常。当然，这种调用next()方法很变态，所以一般使用for循环来调用，因此，生成器也是可迭代对象。</p>
+</li>
+<li><p>通过yield方式创建生成器</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">171</span>]: <span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">(times)</span>:</span></div><div class="line">     ...:     n = <span class="number">0</span></div><div class="line">     ...:     <span class="keyword">while</span>(n &lt; times):</div><div class="line">     ...:         print(<span class="string">'第%d次yield之前'</span>%(n + <span class="number">1</span>))</div><div class="line">     ...:         <span class="keyword">yield</span> n</div><div class="line">     ...:         print(<span class="string">'第%d次yield之后'</span>%(n + <span class="number">1</span>))</div><div class="line">     ...:         n += <span class="number">1</span></div><div class="line">     ...:     <span class="keyword">return</span> <span class="string">'done'</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">174</span>]: next(l)</div><div class="line">第<span class="number">1</span>次<span class="keyword">yield</span>之前</div><div class="line">Out[<span class="number">174</span>]: <span class="number">0</span></div><div class="line"></div><div class="line">In [<span class="number">175</span>]: next(l)</div><div class="line">第<span class="number">1</span>次<span class="keyword">yield</span>之后</div><div class="line">第<span class="number">2</span>次<span class="keyword">yield</span>之前</div><div class="line">Out[<span class="number">175</span>]: <span class="number">1</span></div></pre></td></tr></table></figure>
+<p>循环过程中不断调用yield，就会不断的中断。当前需要给循环一个条件用来结束循环。每次执行到yield处就会中断。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">177</span>]: <span class="keyword">for</span> i <span class="keyword">in</span> l:</div><div class="line">     ...:     print(i)</div></pre></td></tr></table></figure>
+<p>发现使用for循环获取不到函数最后的返回值</p>
+<p>如何获取？手动捕获异常</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">181</span>]: <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">     ...:     <span class="keyword">try</span>:</div><div class="line">     ...:         x = next(l)</div><div class="line">     ...:         print(x)</div><div class="line">     ...:     <span class="keyword">except</span> StopIteration <span class="keyword">as</span> e:</div><div class="line">     ...:         print(<span class="string">'返回值是 : %s'</span>%e.value)</div><div class="line">     ...:         <span class="keyword">break</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h6 id="3-2-2-send方法"><a href="#3-2-2-send方法" class="headerlink" title="3.2.2 send方法"></a>3.2.2 send方法</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">182</span>]: <span class="function"><span class="keyword">def</span> <span class="title">gen</span><span class="params">()</span>:</span></div><div class="line">     ...:     i = <span class="number">0</span></div><div class="line">     ...:     <span class="keyword">while</span> i&lt;<span class="number">5</span>:</div><div class="line">     ...:         temp = <span class="keyword">yield</span> i</div><div class="line">     ...:         print(temp)</div><div class="line">     ...:         i += <span class="number">1</span></div><div class="line">     ...:</div></pre></td></tr></table></figure>
+<p>执行到yield时，gen函数作用暂时保存，返回i的值，并且中断当前循环。temp接受下次c.send(‘python’)中send发过来的值，c.next()等价于c.send(None)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<p>g = gen()<br>g.<strong>next()</strong> # 等价于next(g)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">使用send()</div><div class="line"></div><div class="line">```python</div><div class="line">In [191]: g.__next__()</div><div class="line">Out[191]: 0</div><div class="line"></div><div class="line">In [192]: g.send(&apos;haha&apos;)</div><div class="line">haha</div><div class="line">Out[192]: 1</div></pre></td></tr></table></figure></p>
+<h6 id="3-3-3-生成器总结"><a href="#3-3-3-生成器总结" class="headerlink" title="3.3.3 生成器总结"></a>3.3.3 生成器总结</h6><p>生成器是这样一个函数，它记住了上一次返回时在函数体中的位置。对于生成器函数的第二次(或第n次)调用跳转至函数的中间，而上次调用的所有的局部变量都保持不变。</p>
+<p>生成器不仅仅记住了它的数据状态，同时还记住了它在流控制构造中的位置。</p>
+<p>生成器的特点：</p>
+<ol>
+<li>节约内存</li>
+<li>迭代到下一次调用时，所使用的参数都是第一次保留下来的，不会新创建。</li>
+</ol>
+<h4 id="4-迭代器"><a href="#4-迭代器" class="headerlink" title="4. 迭代器"></a>4. 迭代器</h4><h5 id="4-1-什么是迭代器"><a href="#4-1-什么是迭代器" class="headerlink" title="4.1 什么是迭代器"></a>4.1 什么是迭代器</h5><p>迭代是访问元素的一种方式。迭代器是一个可以记住遍历位置的对象。迭代器对象从集合的第一个元素开始访问，知道元素访问结束。只前进不后退。</p>
+<h5 id="4-2-可迭代对象"><a href="#4-2-可迭代对象" class="headerlink" title="4.2 可迭代对象"></a>4.2 可迭代对象</h5><p>以直接作用for循环的数据有以下几种</p>
+<ol>
+<li>集合数据类型</li>
+<li><p>generator， 包括生成器和带yeild的generator function</p>
+<p>这些可以直接作用于for循环的对象统称为可迭代对象: Iterable </p>
+</li>
+</ol>
+<h5 id="4-3-判断是否可迭代"><a href="#4-3-判断是否可迭代" class="headerlink" title="4.3 判断是否可迭代"></a>4.3 判断是否可迭代</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Iterable</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">isinstance([], Iterable) <span class="comment">#True</span></div><div class="line">isinstance(&#123;&#125;, Iterable) <span class="comment">#True</span></div><div class="line">isinstance(<span class="string">'abc'</span>, Iterable) <span class="comment">#True</span></div><div class="line">isinstance((), Iterable) <span class="comment">#True</span></div><div class="line">isinstance((x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>)), Iterable) <span class="comment">#True</span></div><div class="line">isinstance(<span class="number">100</span>, Iterable) <span class="comment">#False</span></div></pre></td></tr></table></figure>
+<h5 id="4-4-迭代器"><a href="#4-4-迭代器" class="headerlink" title="4.4 迭代器"></a>4.4 迭代器</h5><p>可以被next()函数调用并不断返回下一个值的对象称为迭代器: Iterator</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Iterator</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">isinstance((x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>)), Iterator) <span class="comment">#True</span></div><div class="line">isinstance((), Iterator) <span class="comment">#False</span></div><div class="line">isinstance([], Iterator) <span class="comment">#False</span></div><div class="line">isinstance(&#123;&#125;, Iterator) <span class="comment">#False</span></div><div class="line">isinstance(<span class="number">100</span>, Iterator) <span class="comment">#False</span></div></pre></td></tr></table></figure>
+<h5 id="4-5-iter"><a href="#4-5-iter" class="headerlink" title="4.5 iter()"></a>4.5 iter()</h5><p>生成器都是Iterator对象，但list，dict、str虽然都是Iterable，却不是Iterator.</p>
+<p>把list、dict、str等Iterable编程iterator可以使用iter()函数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">206</span>]: isinstance(iter([]), Iterator)</div><div class="line">Out[<span class="number">206</span>]: <span class="keyword">True</span></div></pre></td></tr></table></figure>
+<h5 id="4-6-总结"><a href="#4-6-总结" class="headerlink" title="4.6 总结"></a>4.6 总结</h5><p><strong>1. 凡是可作用于for循环的对象都是Iterable类型</strong></p>
+<p><strong>2. 凡是可作用于next()函数的对象都是Iterator类型</strong></p>
+<p><strong>3. 集合数据类型是Iterable却不是Iterator，可以通过iter()函数转换变为Iterator对象</strong></p>
+<h4 id="5-作用域"><a href="#5-作用域" class="headerlink" title="5. 作用域"></a>5. 作用域</h4><h5 id="5-1-globals、locals"><a href="#5-1-globals、locals" class="headerlink" title="5.1 globals、locals"></a>5.1 globals、locals</h5><p>获取当前的全部变量和局部变量。</p>
+<h5 id="5-2-LEGB规则"><a href="#5-2-LEGB规则" class="headerlink" title="5.2 LEGB规则"></a>5.2 LEGB规则</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">locals -&gt; enclosing function -&gt; gloabls -&gt; builtins</div></pre></td></tr></table></figure>
+<p>locals: 当前所在的命名空间</p>
+<p>enclosing：外部嵌套函数（一般在闭包中常见）</p>
+<p>globals: 全局变量，函数定义所在的命名空间</p>
+<p>builtins: 内建模块的命名空间</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">python在启动的时候会自动加载很多内建的函数和类</div><div class="line">可以通过dir(__builtin__)来查看。</div></pre></td></tr></table></figure>
+<h4 id="6-私有化"><a href="#6-私有化" class="headerlink" title="6. 私有化"></a>6. 私有化</h4><ol>
+<li>xx：公有变量</li>
+<li>_x： 单前置下划线，私有化的属性或者方法，from somemodule import * 禁止导入，类对象和子类是可以访问的</li>
+<li>__x: 双前置下划线，私有属性，无法在外部直接访问</li>
+<li><strong> xx</strong>: 双前后下划线, 一般是系统自带的一些属性</li>
+<li>xx_: 单后置下划线，避免与python关键字冲突</li>
+</ol>
+<h4 id="7-属性的propery"><a href="#7-属性的propery" class="headerlink" title="7. 属性的propery"></a>7. 属性的propery</h4><p>使用property取代getter和setter</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">18</span>]: <span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">(object)</span>:</span></div><div class="line">    ...:     <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, age)</span>:</span></div><div class="line">    ...:         self.__name = name </div><div class="line">    ...:         self.__age = age</div><div class="line">    ...:     @property</div><div class="line">    ...:     <span class="function"><span class="keyword">def</span> <span class="title">name</span><span class="params">(self)</span>:</span></div><div class="line">    ...:         <span class="keyword">return</span> self.__name</div><div class="line">    ...:     @name.setter</div><div class="line">    ...:     <span class="function"><span class="keyword">def</span> <span class="title">name</span><span class="params">(self, value)</span>:</span></div><div class="line">    ...:         self.__name = value</div><div class="line">    ...:     @property</div><div class="line">    ...:     <span class="function"><span class="keyword">def</span> <span class="title">age</span><span class="params">(self)</span>:</span></div><div class="line">    ...:         <span class="keyword">return</span> self.__age</div><div class="line">    ...:     @age.setter</div><div class="line">    ...:     <span class="function"><span class="keyword">def</span> <span class="title">age</span><span class="params">(self, value)</span>:</span></div><div class="line">    ...:         self.__age = value</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">19</span>]: p = Person(<span class="string">'lisi'</span>, <span class="number">20</span>)</div><div class="line">In [<span class="number">21</span>]: p.name</div><div class="line">Out[<span class="number">21</span>]: <span class="string">'lisi'</span></div><div class="line">In [<span class="number">22</span>]: p.name = <span class="string">'zhangsan'</span></div></pre></td></tr></table></figure>
+<h4 id="8-深拷贝、浅拷贝"><a href="#8-深拷贝、浅拷贝" class="headerlink" title="8. 深拷贝、浅拷贝"></a>8. 深拷贝、浅拷贝</h4><h5 id="8-1-浅拷贝"><a href="#8-1-浅拷贝" class="headerlink" title="8.1 浅拷贝"></a>8.1 浅拷贝</h5><p>通俗的理解：拷贝了引用，没有拷贝内容。</p>
+<p>赋值运算符就是浅拷贝(引用的传递)。</p>
+<h5 id="8-2-深拷贝"><a href="#8-2-深拷贝" class="headerlink" title="8.2 深拷贝"></a>8.2 深拷贝</h5><p><strong>深拷贝是对于一个对象所有层次的拷贝（递归）</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">23</span>]: <span class="keyword">import</span> copy</div><div class="line"></div><div class="line">In [<span class="number">24</span>]: a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div><div class="line"></div><div class="line">In [<span class="number">25</span>]: b = copy.deepcopy(b)</div><div class="line"></div><div class="line">In [<span class="number">26</span>]: id(a)</div><div class="line">Out[<span class="number">26</span>]: <span class="number">4346677640</span></div><div class="line"></div><div class="line">In [<span class="number">27</span>]: id(b)</div><div class="line">Out[<span class="number">27</span>]: <span class="number">4344809224</span></div></pre></td></tr></table></figure>
+<p>进一步理解</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">28</span>]: a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div><div class="line">In [<span class="number">29</span>]: b = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</div><div class="line">In [<span class="number">30</span>]: c = [a, b]</div><div class="line">In [<span class="number">34</span>]: d = c</div><div class="line">In [<span class="number">36</span>]: id(c)</div><div class="line">Out[<span class="number">36</span>]: <span class="number">4347014664</span></div><div class="line">In [<span class="number">37</span>]: id(d)</div><div class="line">Out[<span class="number">37</span>]: <span class="number">4347014664</span></div><div class="line">In [<span class="number">38</span>]: e = copy.deepcopy(c)</div><div class="line">In [<span class="number">39</span>]: id(e)</div><div class="line">Out[<span class="number">39</span>]: <span class="number">4346877448</span></div><div class="line">In [<span class="number">40</span>]: a.append(<span class="number">44</span>)</div><div class="line">In [<span class="number">41</span>]: a</div><div class="line">Out[<span class="number">41</span>]: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">44</span>]</div><div class="line">In [<span class="number">42</span>]: b</div><div class="line">Out[<span class="number">42</span>]: [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</div><div class="line">In [<span class="number">43</span>]: c</div><div class="line">Out[<span class="number">43</span>]: [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">44</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]]</div><div class="line">In [<span class="number">44</span>]: d</div><div class="line">Out[<span class="number">44</span>]: [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">44</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]]</div><div class="line">In [<span class="number">45</span>]: e</div><div class="line">Out[<span class="number">45</span>]: [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]]</div></pre></td></tr></table></figure>
+<h5 id="8-3-浅拷贝对不可变类型和可变类型的copy不同"><a href="#8-3-浅拷贝对不可变类型和可变类型的copy不同" class="headerlink" title="8.3 浅拷贝对不可变类型和可变类型的copy不同"></a>8.3 浅拷贝对不可变类型和可变类型的copy不同</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">56</span>]: a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div><div class="line"></div><div class="line">In [<span class="number">57</span>]: b = copy.copy(a)</div><div class="line"></div><div class="line">In [<span class="number">58</span>]: id(a)</div><div class="line">Out[<span class="number">58</span>]: <span class="number">4347022728</span></div><div class="line"></div><div class="line">In [<span class="number">59</span>]: id(b)</div><div class="line">Out[<span class="number">59</span>]: <span class="number">4347204872</span></div><div class="line"></div><div class="line">In [<span class="number">60</span>]: a.append(<span class="number">4</span>)</div><div class="line"></div><div class="line">In [<span class="number">61</span>]: a</div><div class="line">Out[<span class="number">61</span>]: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</div><div class="line"></div><div class="line">In [<span class="number">62</span>]: b</div><div class="line">Out[<span class="number">62</span>]: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div><div class="line"></div><div class="line">In [<span class="number">63</span>]: a = (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</div><div class="line"></div><div class="line">In [<span class="number">64</span>]: b = copy.copy(a)</div><div class="line"></div><div class="line">In [<span class="number">65</span>]: id(a)</div><div class="line">Out[<span class="number">65</span>]: <span class="number">4343403792</span></div><div class="line"></div><div class="line">In [<span class="number">66</span>]: id(b)</div><div class="line">Out[<span class="number">66</span>]: <span class="number">4343403792</span></div></pre></td></tr></table></figure>
+<p>对于不可变类型的 copy，引用不会发生变化</p>
+<p>对于可变类型的copy，会做第一层次的深拷贝操作，不做递归</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/22/阿里大半年感想总结/" rel="next" title="在阿里工作大半年的感想和总结">
+                <i class="fa fa-chevron-left"></i> 在阿里工作大半年的感想和总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/02/Python知识点-高级篇（中）/" rel="prev" title="Python知识点-高级篇(中)">
+                Python知识点-高级篇(中) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="我就是菜怎么啦" />
+          <p class="site-author-name" itemprop="name">我就是菜怎么啦</p>
+           
+              <p class="site-description motion-element" itemprop="description">iOS/前端/Python</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Python知识点-高级篇-上"><span class="nav-text">Python知识点-高级篇(上)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-元类"><span class="nav-text">1. 元类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-为什么需要元类"><span class="nav-text">1.1 为什么需要元类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-什么是元类"><span class="nav-text">1.2. 什么是元类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-怎么使用元类"><span class="nav-text">1.3. 怎么使用元类</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Python是动态语言"><span class="nav-text">2. Python是动态语言</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-什么是动态语言"><span class="nav-text">2.1  什么是动态语言</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#2-2-2-动态添加类属性"><span class="nav-text">2.2.2 动态添加类属性</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-2-3-动态添加对象-类方法"><span class="nav-text">2.2.3 动态添加对象/类方法</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-2-4-运行过程中删除属性和方法"><span class="nav-text">2.2.4 运行过程中删除属性和方法</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-slots"><span class="nav-text">2.3  slots </span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-生成器"><span class="nav-text">3. 生成器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-什么是生成器"><span class="nav-text">3.1 什么是生成器</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#3-1-1-列表推导"><span class="nav-text">3.1.1 列表推导</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-2-2-生成器"><span class="nav-text">3.2.2 生成器</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-如何创建生成器"><span class="nav-text">3.2 如何创建生成器</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#3-2-1-创建生成器的2种方式"><span class="nav-text">3.2.1 创建生成器的2种方式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-2-2-send方法"><span class="nav-text">3.2.2 send方法</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-3-3-生成器总结"><span class="nav-text">3.3.3 生成器总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-迭代器"><span class="nav-text">4. 迭代器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-1-什么是迭代器"><span class="nav-text">4.1 什么是迭代器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-可迭代对象"><span class="nav-text">4.2 可迭代对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-3-判断是否可迭代"><span class="nav-text">4.3 判断是否可迭代</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-4-迭代器"><span class="nav-text">4.4 迭代器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-5-iter"><span class="nav-text">4.5 iter()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-6-总结"><span class="nav-text">4.6 总结</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-作用域"><span class="nav-text">5. 作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#5-1-globals、locals"><span class="nav-text">5.1 globals、locals</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-2-LEGB规则"><span class="nav-text">5.2 LEGB规则</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-私有化"><span class="nav-text">6. 私有化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-属性的propery"><span class="nav-text">7. 属性的propery</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-深拷贝、浅拷贝"><span class="nav-text">8. 深拷贝、浅拷贝</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#8-1-浅拷贝"><span class="nav-text">8.1 浅拷贝</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-2-深拷贝"><span class="nav-text">8.2 深拷贝</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-3-浅拷贝对不可变类型和可变类型的copy不同"><span class="nav-text">8.3 浅拷贝对不可变类型和可变类型的copy不同</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">我就是菜怎么啦</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

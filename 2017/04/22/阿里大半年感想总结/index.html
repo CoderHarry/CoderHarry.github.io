@@ -1,0 +1,785 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="工作感想," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="从去年9月入职阿里巴巴，到现在也差不多有大半年的时间了。这大半年的时间里也参与了很多迭代开发，接触了很多不同的产品和项目，感触和想法蛮多的，这里也好好review这大半年在阿里工作。
+先简单说下自己的一些情况吧：
+本人是做iOS客户端开发，来阿里之前已经做了3年多的开发了，来到阿里之后参与的是手机淘宝的开发。
+随便聊聊：
+
+更大的平台有更大的视野,   在手淘这种超级体量的App下会有更多复杂的业">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在阿里工作大半年的感想和总结">
+<meta property="og:url" content="http://yoursite.com/2017/04/22/阿里大半年感想总结/index.html">
+<meta property="og:site_name" content="yanzhi's Blog">
+<meta property="og:description" content="从去年9月入职阿里巴巴，到现在也差不多有大半年的时间了。这大半年的时间里也参与了很多迭代开发，接触了很多不同的产品和项目，感触和想法蛮多的，这里也好好review这大半年在阿里工作。
+先简单说下自己的一些情况吧：
+本人是做iOS客户端开发，来阿里之前已经做了3年多的开发了，来到阿里之后参与的是手机淘宝的开发。
+随便聊聊：
+
+更大的平台有更大的视野,   在手淘这种超级体量的App下会有更多复杂的业">
+<meta property="og:image" content="http://yoursite.com/2017/04/22/阿里大半年感想总结/">
+<meta property="og:updated_time" content="2017-05-20T16:09:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在阿里工作大半年的感想和总结">
+<meta name="twitter:description" content="从去年9月入职阿里巴巴，到现在也差不多有大半年的时间了。这大半年的时间里也参与了很多迭代开发，接触了很多不同的产品和项目，感触和想法蛮多的，这里也好好review这大半年在阿里工作。
+先简单说下自己的一些情况吧：
+本人是做iOS客户端开发，来阿里之前已经做了3年多的开发了，来到阿里之后参与的是手机淘宝的开发。
+随便聊聊：
+
+更大的平台有更大的视野,   在手淘这种超级体量的App下会有更多复杂的业">
+<meta name="twitter:image" content="http://yoursite.com/2017/04/22/阿里大半年感想总结/">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/04/22/阿里大半年感想总结/"/>
+
+
+
+
+
+  <title> 在阿里工作大半年的感想和总结 | yanzhi's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">yanzhi's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">爱生活，爱编程。记录学习生活中的点点滴滴~</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/22/阿里大半年感想总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="我就是菜怎么啦">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yanzhi's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                在阿里工作大半年的感想和总结
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-22T15:00:07+08:00">
+                2017-04-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/个人感想/" itemprop="url" rel="index">
+                    <span itemprop="name">个人感想</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>从去年9月入职阿里巴巴，到现在也差不多有大半年的时间了。这大半年的时间里也参与了很多迭代开发，接触了很多不同的产品和项目，感触和想法蛮多的，这里也好好review这大半年在阿里工作。</p>
+<p>先简单说下自己的一些情况吧：</p>
+<p>本人是做iOS客户端开发，来阿里之前已经做了3年多的开发了，来到阿里之后参与的是手机淘宝的开发。</p>
+<p>随便聊聊：</p>
+<ol>
+<li>更大的平台有更大的视野,   在手淘这种超级体量的App下会有更多复杂的业务，在这种复杂的业务见到各种技术方案的实践。</li>
+<li>上千万甚至上亿的UV的App，在这种条件下遇到了更多的问题，交互问题，性能问题，bug，这些也是在以前的开发过程中很难遇到的。</li>
+<li>手淘是一款运营驱动形的App，但是由于Appstore的各种限制以及需求的快速迭代，传统的客户端开发模式也不能完全满足开发需求，所以诞生了各种跨平台，跨端的动态技术。</li>
+<li>多业务bundle的划分，为了每个业务更加独立的开发，减少沟通成本，也有一系列的方案去解决这种场景。</li>
+<li>随着包大小的增加，越来越接近AppStore的限制，如何下架废弃的业务，如何使用跨端的动态化技术来减少native代码也是目前遇到的一些问题。</li>
+</ol>
+<p>谈些思想的转变吧：</p>
+<p>曾经开发可能更加关注于当前页面如何实现，关注与如何解耦合不同的模块，如何封装相似的代码，做好代码的维护以及iOS端功能的实现即可。</p>
+<p>​    在阿里工作了大半年之后，可能对自己感触最大的是：为什么要做这个业务，怎么去做这个业务，这个业务最终沉淀下来什么了。</p>
+<p>​    接到一个需求的时候，不应该立刻就去写代码，而是应该去关注这个业务的本身，也就是说，应该去想为什么会有这个需求的产生，当不是特别清晰的时候，可以去和产品进行沟通，如果沟通之后仍然未想明白这个需求能带来什么结果的时候，那就要考虑这个需求的合理性，是否需要去做这个需求了。</p>
+<p>先说下手淘开发流程吧：</p>
+<p>PRD -&gt; 交互评审 -&gt; 视觉评审 -&gt; 需求评审 -&gt; 开发人员划分 -&gt; 技术方案评审 -&gt; 代码阶段 -&gt; 提交测试 -&gt; 视觉交互走查 -&gt; 修复bug -&gt; 提交集成 -&gt; bugfix -&gt; 灰度 -&gt; bugfix -&gt; 上线</p>
+<p>遇到的一些具体问题和学到一些东西总结:</p>
+<ol>
+<li><p>刚来手淘的时候，做了一个简单页面修改吧，拿到最终划分下来的需求之后，balabala一顿写，写完之后提测然后给交互视觉走查，这个时候遇到了一些问题，这里间距iOS没问题，安卓大了，这里iOS字体小了，安卓大了。。等等类似这样问题。</p>
+<p>原因：平台的不一致，技术方案的不一致导致这个问题产生</p>
+<p>分析：我们都知道，iOS的布局一般是frame计算或者autolayout。安卓也是通过自身的布局方式，这种技术方案的不一致导致在根据UI设计稿写界面，最终出现的效果细节上会有很多不一样的情况。</p>
+<p>解决方案：借助前端的方案，为了抹平平台的差异化，iOS和安卓统一使用yoga的方式布局（也就是flexbox）。但是这种方式也会由于部分组件或者框架的不一致性导致无法抹平两端的差异化，所以最终的解决方案，我们的布局统一用HTML去描述，通过一系列的操作最终转换为原生的代码，这里简单说下我们这个组件化方案：</p>
+<p>HTML+CSS(flexbox布局) -&gt; JSON -&gt; Native</p>
+<p>native端只需要实现 div，image，button，text等等这样的组件即可，随着业务的扩展只需要增加原子组件即可。</p>
+<p>通过以上的方式不仅抹平了两端的差异化，也实现一个动态化的方案，通过服务端下发json既可随时更新界面，也大量的减少了客户端绘制UI的时间，基本上UI可以一个人实现，从原来一个原生页面需要1+1的开发工作量变成了 1个人了。</p>
+<p>结果：通过几个版本的磨合细节调整，基本上交互视觉走查基本不会出现两端不一致的问题。</p>
+</li>
+<li><p>不同bundle之间的通信</p>
+<p>在手淘中通过url路由的方式进行通信，当然这个只是一个大的技术方案，中间也有很多的细节，比如：如何防止随便添加bundle，如何做到url的重定向，如何做到callback等等问题，这里也不细讲了。</p>
+<p>url路由带来的好处：</p>
+<p>不同团队之间的页面跳转不需要知道你这个业务，只需要知道你的url是啥，url后面的参数是啥就可以了(参考服务端)。</p>
+<p>native跳转H5，H5跳转native页面也变得异常简单了，不需要和以前开发模式一样还需要去定义各种协议了。</p>
+</li>
+<li><p>抹平差异化遇到的问题</p>
+<p>在抹平两端的差异化，统一技术方案中遇到太多细节的问题，这里列举几个比较典型的</p>
+<p>a) 安卓的图片拉升通过.9.png， iOS通过置顶区域或者坐标点的方式。</p>
+<p>这里最终的解决方案是iOS需要支持.9.png，所以iOS使用了大量的图片像素点的处理技术对9.png图片的处理，而且iOS还有不同屏幕的图片适配问题需要剞劂。</p>
+<p>b) 在实现richText标签遇到的问题</p>
+<p>在实现富文本组件的过程中，也遇到了问题，如何描述富文本？</p>
+<p>最终采用标准HTML的形式去描述服务端<span> + <img src="/2017/04/22/阿里大半年感想总结/"> + <a>去描述富文本组件。</a></span></p>
+<p>而iOS遇到一个问题就是事件冲突.</p>
+<p>a标签在iOS中的实现机制其实是去监听touch相关的事件，点击标签之后会有一个点击效果.真正处理这个点击时间实在touchend中处理。</p>
+<p>但是如果在富文本中添加了一个点击时间，会发现永远无法执行到touchend方法了，这个官方文档有详细的解释。</p>
+<p>这里最终的解决方案：默认永远添加一个tapGesture，设置相关的属性让touch事件和tap事件都会触发，如果点击在<a>标签的区域中tapGesture不做任何处理，但是点击不在a标签的时候则去处理tapGesture事件</a></p>
+</li>
+<li><p>MVC的改变</p>
+<p>以前的开发模式大多数都是MVC的开发模式，只是在MVC的基础上为了代码的简洁，做了一些更细粒度的划分。</p>
+<p>在我们的业务团队中，基本上都是数据驱动的方式开发的，单向数据绑定。</p>
+<p>View 层通过 HTML +CSS实现</p>
+<p>Model 层 就是 Data数据</p>
+<p>Controller 层 就是 control view的事情</p>
+<p>增加了一层</p>
+<p>loader，所有和数据相关的操作都是在loader层中处理，loader层也是基于KVO，数据一旦发生变化，view即发生变化。</p>
+</li>
+<li><p>性能问题</p>
+<p>页面上有性能考核，由于我们采用以上的技术方案实现，越是通用的技术方案越容易产生一些比较蛋疼的问题，所以出现了性能不达标的问题。</p>
+<p>列表帧率不达标：</p>
+<p>采用异步渲染，主线程异步分片加载的方式，视图的缓存，预计算高度等等方案。</p>
+<p>首页平均启动时间不达标：</p>
+<p>这个问题非常麻烦，基础组件的不断完善过程中，在增加了视频组件，定时滚动组件这些比较复杂的组件之后启动时间增加一些，进入页面先加载缓存，再加载网络也导致启动时间不达标。 </p>
+<p>其实这种问题更加在于一种解决方案的探讨中：</p>
+<ol>
+<li>优化各个组件</li>
+<li>进入页面在500MS的时间内，只加载网络，如果网络加载失败就只拉缓存数据，抛弃这次网络加载。（由于我们观察了手淘，90%的请求时间实在500ms内）</li>
+<li>淘汰老机型，在iPhone 6以下的机型只加载缓存</li>
+<li>淘汰弱网络，只有4G和wifi的情况下才加载网络，否则只走缓存</li>
+</ol>
+<p>通过以上方案，整个大盘的数据降下来并且达标了。</p>
+</li>
+</ol>
+<p>就先写这么多吧，其实还遇到了蛮多的问题，但是比较典型的大概就这几个，其实在这大半年的时间里，最大的变化就是思维方式的改变吧。</p>
+<p>当每次去做一个需求的时候多去问问自己为什么要这个业务吧。想清楚了之后在做技术方案的讨论，业务组件的划分等等功能。</p>
+<p>解决方案，技术方案往往决定了最终技术如何实现，所以更多时间应该放在前期，从某个方面来说 写代码是最简单的事情。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/工作感想/" rel="tag"># 工作感想</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/22/ReactRouter/" rel="next" title="React Router">
+                <i class="fa fa-chevron-left"></i> React Router
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/02/Python知识点-高级篇（上）/" rel="prev" title="Python知识点-高级篇(上)">
+                Python知识点-高级篇(上) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="我就是菜怎么啦" />
+          <p class="site-author-name" itemprop="name">我就是菜怎么啦</p>
+           
+              <p class="site-description motion-element" itemprop="description">iOS/前端/Python</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">我就是菜怎么啦</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
